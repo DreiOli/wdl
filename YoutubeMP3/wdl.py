@@ -1,30 +1,20 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import youtube_dl
 
 import ffmpeg
 
 import ffprobe
 
-
-# In[ ]:
-
-
 def run():
     video_url = input("please enter youtube video url:")
     video_info = youtube_dl.YoutubeDL().extract_info(
         url = video_url,download=False
     )
-    filename = f"{video_info['title']}.mp3"
+    filename = f"{video_info['title']}"
     options = {
     'format':'bestaudio/best',
     'extractaudio':True,
     'audioformat':'mp3',
-    'outtmpl':'%(id)s.%(ext)s',     #name the file the ID of the video
+    'outtmpl':filename + '.%(ext)s',     #name the file the ID of the video
     'noplaylist':True,
     'nocheckcertificate':True,
     'proxy':"",
@@ -46,4 +36,3 @@ def run():
 
 if __name__=='__main__':
     run()
-
